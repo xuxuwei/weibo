@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 
+	  url访问路径：   localhost:8080/项目名/namespace/actionName
+	 -->
+	
+	<!-- 
+	   使用struts-json插件步骤：
+	   ①导包 struts2-json-plugin-2.3.1.1.jar
+	   ②<package extends="struts-default">
+	                 修改成 <package extends="json-default">
+	   ③Action类  方法 返回类型   对应  Struts.xml 
+			<result name="rviewlist_json"  type="json"></result>             
+	 -->
+	<package name="newer" namespace="/" extends="json-default">
+		<!-- 用户Action -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="index">/main.jsp</result>
+			<result name="loginUI">/WEB-INF/page/login.jsp</result>
+		</action>
+		<!-- 博客日志Action -->
+		<action name="blog_*" class="blogAction" method="{1}">
+			<result name="listblog_all">/WEB-INF/page/listblog_all.jsp</result>
+			<result name="findblog" >/WEB-INF/page/findblog.jsp</result>
+		</action>
+		
+		<!-- 评论Action -->
+		<action name="rview_*" class="rviewAction" method="{1}">
+			<result type="json" name="aaa"></result>
+			<result name="rview_list">/WEB-INF/page/listrview_all.jsp</result>
+		</action>		
+				
+	</package>
+
+
+
+</struts>
